@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet">
+        <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <form action="/submit" method="post">
+                Your Name: <input type="text" name="name">
+                <br>
+                Dojo Location <select name="location">
+                        <option value="San Jose">San Jose</option>
+                        <option value="Seattle">Seattle</option>
+                        <option value="Dallas">Dallas</option>
+                        <option value="Chicago">Chicago</option>
+                    </select>
+                <br>
+                Favorite Language: <select name="language">
+                        <option value="Ruby">Ruby</option>
+                        <option value="Python">Python</option>
+                </select>
+                <br>
+                Comment: <textarea name="comment"></textarea>
+                </form>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </body>
+</html>

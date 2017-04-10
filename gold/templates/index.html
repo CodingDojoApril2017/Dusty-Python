@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+        <!--<link href="../static/css/style.css" rel="stylesheet">-->
+    </head>
+    <body>
+        <div class="gold-count">
+            <h4>Gold: </h4>
+            <input type="text" value="{{ gold }}" name="gold">
+            <form action = "/reset" method="post">
+                <input type="submit" value="Reset">
+            </form>
+        </div>
+        <div>
+            <h5>Health</h5>
+            <div class="health-bar">
+                <div class="health" style="width: {{health}}%">
+                </div>
+            <h5>Armor</h5>
+            <div class="armor-bar">
+                <div class="armor" style="width: {{armor}}%">
+                </div>
+            </div>
+        </div>
+        <div class="buildings">
+            <div class="building">
+                <h2>Farm</h2>
+                <h4>(earns 10 to 20 gold)</h4>
+                <h4>Takes 0 to 5 damage</h4>
+                <form action="/process" method="post">
+                    <input type="hidden" name="building" value="farm">
+                    <input type="submit" name="button" value="Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>Cave</h2>
+                <h4>(earns 5 to 10 gold)</h4>
+                <h4>Takes 0 to 10 damage</h4>
+                <form action="/process" method="post">
+                    <input type="hidden" name="building" value="cave">
+                    <input type="submit" name="button" value="Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>House</h2>
+                <h4>(earns 2 to 5 gold)</h4>
+                <h4>Takes 0 to 5 damage</h4>
+                <form action="/process" method="post">
+                    <input type="hidden" name="building" value="house">
+                    <input type="submit" name="button" value="Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h2>Casino</h2>
+                <h4>(earns -50 to 50 gold)</h4>
+                <h4>Takes 0 damage</h4>
+                <form action="/process" method="post">
+                    <input type="hidden" name="building" value="casino">
+                    <input type="submit" name="button" value="Gold!">
+                </form>
+            </div>
+        </div>
+        <div class="activities">
+            <h6>Activities</h6>
+           {% for i in session["activities"]  %}
+            <p> {{i}}</p>
+            {% endfor %}
+        </div>
+    </body>
+</html>
